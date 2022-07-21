@@ -41,14 +41,7 @@ class _HomeState extends State<Home> {
                 },
               ),
               ElevatedButton(
-                onPressed: () {
-                  if (formMasterKey.currentState!.validate()) {
-                    debugPrint('cadastro realizado com sucesso');
-                    formMasterKey.currentState!.save();
-                  } else {
-                    debugPrint('corrija os erros e tente novamente');
-                  }
-                },
+                onPressed: _register,
                 child: const Text("Cadastrar"),
               ),
             ],
@@ -56,6 +49,15 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  void _register() {
+    if (formMasterKey.currentState!.validate()) {
+      debugPrint('cadastro realizado com sucesso');
+      formMasterKey.currentState!.save();
+    } else {
+      debugPrint('corrija os erros e tente novamente');
+    }
   }
 
   String? _validateEmail(String? value) {
