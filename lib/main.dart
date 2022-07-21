@@ -32,6 +32,7 @@ class _HomeState extends State<Home> {
         child: Form(
           key: formMasterKey,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
                 validator: (value) {
@@ -40,7 +41,8 @@ class _HomeState extends State<Home> {
                   }
                   return null;
                 },
-              )
+              ),
+              ElevatedButton(onPressed: () {}, child: const Text("Cadastrar")),
             ],
           ),
         ),
