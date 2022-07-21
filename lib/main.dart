@@ -35,12 +35,7 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'o campo não pode ser vazio';
-                  }
-                  return null;
-                },
+                validator: _validateEmail,
                 onSaved: (value) {
                   debugPrint('enviando dados para api');
                 },
@@ -61,5 +56,12 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  String? _validateEmail(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'o campo não pode ser vazio';
+    }
+    return null;
   }
 }
