@@ -23,8 +23,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final formMasterKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Center(
+        child: Form(
+          key: formMasterKey,
+          child: Column(
+            children: [
+              TextFormField(
+                validator: (value) {
+                  if (value == 'nome') {
+                    return 'que nome?';
+                  }
+                  return null;
+                },
+              )
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
