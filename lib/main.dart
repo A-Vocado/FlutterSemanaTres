@@ -36,13 +36,22 @@ class _HomeState extends State<Home> {
             children: [
               TextFormField(
                 validator: (value) {
-                  if (value == 'nome') {
-                    return 'que nome?';
+                  if (value == null || value.isEmpty) {
+                    return 'o campo não pode ser vazio';
                   }
                   return null;
                 },
               ),
-              ElevatedButton(onPressed: () {}, child: const Text("Cadastrar")),
+              ElevatedButton(
+                onPressed: () {
+                  if (formMasterKey.currentState!.validate()) {
+                    debugPrint('cadastro realizado com sucesso');
+                  } else {
+                    debugPrint('corrija os erros e tente novamente');
+                  }
+                },
+                child: const Text("Cadastrar"),
+              ),
             ],
           ),
         ),
