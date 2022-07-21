@@ -34,11 +34,14 @@ class _HomeState extends State<Home> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                validator: _validateEmail,
-                onSaved: (value) {
-                  debugPrint('enviando dados para api');
-                },
+              Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: TextFormField(
+                  validator: _validateEmail,
+                  onSaved: (value) {
+                    debugPrint('enviando dados para api');
+                  },
+                ),
               ),
               ElevatedButton(
                 onPressed: _register,
