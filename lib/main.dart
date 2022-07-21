@@ -41,11 +41,15 @@ class _HomeState extends State<Home> {
                   }
                   return null;
                 },
+                onSaved: (value) {
+                  debugPrint('enviando dados para api');
+                },
               ),
               ElevatedButton(
                 onPressed: () {
                   if (formMasterKey.currentState!.validate()) {
                     debugPrint('cadastro realizado com sucesso');
+                    formMasterKey.currentState!.save();
                   } else {
                     debugPrint('corrija os erros e tente novamente');
                   }
