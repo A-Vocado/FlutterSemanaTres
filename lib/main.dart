@@ -102,16 +102,6 @@ class _HomeState extends State<Home> {
                                       color: Colors.red,
                                     ),
                                   ),
-
-                            //Sugestão do Dev Zorek
-                            // isChecked
-                            //     ? Container()
-                            //     : const Text(
-                            //         'aceite o contrato, por favor',
-                            //         style: TextStyle(
-                            //           color: Colors.red,
-                            //         ),
-                            //       ),
                           ],
                         );
                       },
