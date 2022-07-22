@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: TextFormField(
-                  validator: Validator().validateEmail,
+                  validator: Validator.validateEmail,
                   onSaved: (value) {
                     debugPrint('enviando dados para api');
                   },

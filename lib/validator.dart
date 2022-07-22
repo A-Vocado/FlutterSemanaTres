@@ -1,14 +1,14 @@
 class Validator {
-  Validator();
-
-  String? validateEmail(String? value) {
+  static String? validateEmail(String? value) {
     final upperCase = RegExp(r'[A-Z]');
+
     final rfc5322 = RegExp(
         r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+");
 
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
+
     //Verificação com hasMatch
     // if (upperCase.hasMatch(value)) {
     //   return 'o campo não pode ter letras maiúsculas';
