@@ -48,12 +48,7 @@ class _HomeState extends State<Home> {
               ),
               FormField<bool>(
                 initialValue: isChecked,
-                validator: (value) {
-                  if (value != null && !value) {
-                    return 'aceite o contrato, por favor';
-                  }
-                  return null;
-                },
+                validator: Validator.validateCheckbox,
                 builder: (state) {
                   return Column(
                     children: [

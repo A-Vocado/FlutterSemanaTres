@@ -34,4 +34,11 @@ class Validator {
     }
     return null;
   }
+
+  static String? validateCheckbox(bool? value) {
+    if (value != null && !value) {
+      return 'aceite o contrato, por favor';
+    }
+    return null;
+  }
 }
