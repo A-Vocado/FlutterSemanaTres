@@ -41,4 +41,11 @@ class Validator {
     }
     return null;
   }
+
+  static String? validateStatesDropdown(String? value) {
+    if (value == null || value.isEmpty) {
+      return "selecione um estado";
+    }
+    return null;
+  }
 }
