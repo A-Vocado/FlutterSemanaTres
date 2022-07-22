@@ -1,4 +1,12 @@
 class Validator {
+  //TODO: criar método para validar nome
+  //TODO: criar método para validar senha
+  //TODO: criar método para validar CPF
+  //TODO: criar método para validar data de nascimento
+  //TODO: criar método para validar identidade de gênero
+  //TODO: criar método para validar turma
+  //TODO: criar método para validar aceite de termos
+
   static String? validateEmail(String? value) {
     final upperCase = RegExp(r'[A-Z]');
 
