@@ -23,8 +23,135 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final formMasterKey = GlobalKey<FormState>();
+
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      body: Form(
+        key: formMasterKey,
+        child: LayoutBuilder(
+          builder: (context, contraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: contraints.maxHeight,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: TextFormField(
+                        validator: _validateEmail,
+                        onSaved: (value) {
+                          debugPrint('enviando dados para api');
+                        },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: DropdownButtonFormField<String>(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "selecione um estado";
+                          }
+                          return null;
+                        },
+                        items: ['Centro', 'Norte', 'Nordeste', 'Sul', 'Sudeste']
+                            .map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (value) {
+                          debugPrint(value);
+                        },
+                      ),
+                    ),
+                    FormField<bool>(
+                      initialValue: isChecked,
+                      validator: (value) {
+                        if (value != null && !value) {
+                          return 'aceite o contrato, por favor';
+                        }
+                        return null;
+                      },
+                      builder: (state) {
+                        return Column(
+                          children: [
+                            Checkbox(
+                              value: isChecked,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked = !isChecked;
+                                  state.didChange(value);
+                                });
+                              },
+                            ),
+                            state.errorText == null
+                                ? Container()
+                                : const Text(
+                                    'aceite o contrato, por favor',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                    ),
+                                  ),
+                          ],
+                        );
+                      },
+                    ),
+                    ElevatedButton(
+                      onPressed: _register,
+                      child: const Text("Cadastrar"),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  void _register() {
+    if (formMasterKey.currentState!.validate()) {
+      debugPrint('cadastro realizado com sucesso');
+      formMasterKey.currentState!.save();
+    } else {
+      debugPrint('corrija os erros e tente novamente');
+    }
+  }
+
+  String? _validateEmail(String? value) {
+    final upperCase = RegExp(r'[A-Z]');
+    final rfc5322 = RegExp(
+        r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+");
+
+    if (value == null || value.isEmpty) {
+      return 'o campo não pode ser vazio';
+    }
+    //Verificação com hasMatch
+    // if (upperCase.hasMatch(value)) {
+    //   return 'o campo não pode ter letras maiúsculas';
+    // }
+
+    if (value.contains(upperCase)) {
+      return 'o campo não pode ter letras maiúsculas';
+    }
+
+    if (value.contains(' ')) {
+      return 'o campo não pode conter espaços';
+    }
+    if (!value.contains(rfc5322)) {
+      return 'email inválido, digite um email corretamente';
+    }
+    return null;
   }
 }
