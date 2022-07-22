@@ -25,6 +25,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
 
+  bool isChecked = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +44,48 @@ class _HomeState extends State<Home> {
                     debugPrint('enviando dados para api');
                   },
                 ),
+              ),
+              FormField<bool>(
+                initialValue: isChecked,
+                validator: (value) {
+                  if (value != null && !value) {
+                    return 'aceite o contrato, por favor';
+                  }
+                  return null;
+                },
+                builder: (state) {
+                  return Column(
+                    children: [
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (value) {
+                          setState(() {
+                            isChecked = !isChecked;
+                            state.didChange(value);
+                          });
+                        },
+                      ),
+                      state.errorText == null
+                          ? Container()
+                          : const Text(
+                              'aceite o contrato, por favor',
+                              style: TextStyle(
+                                color: Colors.red,
+                              ),
+                            ),
+
+                      //Sugestão do Dev Zorek
+                      // isChecked
+                      //     ? Container()
+                      //     : const Text(
+                      //         'aceite o contrato, por favor',
+                      //         style: TextStyle(
+                      //           color: Colors.red,
+                      //         ),
+                      //       ),
+                    ],
+                  );
+                },
               ),
               ElevatedButton(
                 onPressed: _register,
