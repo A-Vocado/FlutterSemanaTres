@@ -30,92 +30,101 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Form(
-          key: formMasterKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: TextFormField(
-                  validator: _validateEmail,
-                  onSaved: (value) {
-                    debugPrint('enviando dados para api');
-                  },
+      body: Form(
+        key: formMasterKey,
+        child: LayoutBuilder(
+          builder: (context, contraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: contraints.maxHeight,
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: DropdownButtonFormField<String>(
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "selecione um estado";
-                    }
-                    return null;
-                  },
-                  items: ['Centro', 'Norte', 'Nordeste', 'Sul', 'Sudeste']
-                      .map<DropdownMenuItem<String>>(
-                    (String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
-                      );
-                    },
-                  ).toList(),
-                  onChanged: (value) {
-                    debugPrint(value);
-                  },
-                ),
-              ),
-              FormField<bool>(
-                initialValue: isChecked,
-                validator: (value) {
-                  if (value != null && !value) {
-                    return 'aceite o contrato, por favor';
-                  }
-                  return null;
-                },
-                builder: (state) {
-                  return Column(
-                    children: [
-                      Checkbox(
-                        value: isChecked,
-                        onChanged: (value) {
-                          setState(() {
-                            isChecked = !isChecked;
-                            state.didChange(value);
-                          });
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: TextFormField(
+                        validator: _validateEmail,
+                        onSaved: (value) {
+                          debugPrint('enviando dados para api');
                         },
                       ),
-                      state.errorText == null
-                          ? Container()
-                          : const Text(
-                              'aceite o contrato, por favor',
-                              style: TextStyle(
-                                color: Colors.red,
-                              ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: DropdownButtonFormField<String>(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "selecione um estado";
+                          }
+                          return null;
+                        },
+                        items: ['Centro', 'Norte', 'Nordeste', 'Sul', 'Sudeste']
+                            .map<DropdownMenuItem<String>>(
+                          (String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          },
+                        ).toList(),
+                        onChanged: (value) {
+                          debugPrint(value);
+                        },
+                      ),
+                    ),
+                    FormField<bool>(
+                      initialValue: isChecked,
+                      validator: (value) {
+                        if (value != null && !value) {
+                          return 'aceite o contrato, por favor';
+                        }
+                        return null;
+                      },
+                      builder: (state) {
+                        return Column(
+                          children: [
+                            Checkbox(
+                              value: isChecked,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked = !isChecked;
+                                  state.didChange(value);
+                                });
+                              },
                             ),
+                            state.errorText == null
+                                ? Container()
+                                : const Text(
+                                    'aceite o contrato, por favor',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                    ),
+                                  ),
 
-                      //Sugestão do Dev Zorek
-                      // isChecked
-                      //     ? Container()
-                      //     : const Text(
-                      //         'aceite o contrato, por favor',
-                      //         style: TextStyle(
-                      //           color: Colors.red,
-                      //         ),
-                      //       ),
-                    ],
-                  );
-                },
+                            //Sugestão do Dev Zorek
+                            // isChecked
+                            //     ? Container()
+                            //     : const Text(
+                            //         'aceite o contrato, por favor',
+                            //         style: TextStyle(
+                            //           color: Colors.red,
+                            //         ),
+                            //       ),
+                          ],
+                        );
+                      },
+                    ),
+                    ElevatedButton(
+                      onPressed: _register,
+                      child: const Text("Cadastrar"),
+                    ),
+                  ],
+                ),
               ),
-              ElevatedButton(
-                onPressed: _register,
-                child: const Text("Cadastrar"),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );
