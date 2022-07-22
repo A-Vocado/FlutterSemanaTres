@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formy/validator.dart';
 
 void main() {
   runApp(const App());
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.all(32.0),
                 child: TextFormField(
-                  validator: _validateEmail,
+                  validator: Validator().validateEmail,
                   onSaved: (value) {
                     debugPrint('enviando dados para api');
                   },
@@ -73,7 +74,6 @@ class _HomeState extends State<Home> {
                                 color: Colors.red,
                               ),
                             ),
-
                       //Sugestão do Dev Zorek
                       // isChecked
                       //     ? Container()
@@ -105,31 +105,5 @@ class _HomeState extends State<Home> {
     } else {
       debugPrint('corrija os erros e tente novamente');
     }
-  }
-
-  String? _validateEmail(String? value) {
-    final upperCase = RegExp(r'[A-Z]');
-    final rfc5322 = RegExp(
-        r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+");
-
-    if (value == null || value.isEmpty) {
-      return 'o campo não pode ser vazio';
-    }
-    //Verificação com hasMatch
-    // if (upperCase.hasMatch(value)) {
-    //   return 'o campo não pode ter letras maiúsculas';
-    // }
-
-    if (value.contains(upperCase)) {
-      return 'o campo não pode ter letras maiúsculas';
-    }
-
-    if (value.contains(' ')) {
-      return 'o campo não pode conter espaços';
-    }
-    if (!value.contains(rfc5322)) {
-      return 'email inválido, digite um email corretamente';
-    }
-    return null;
   }
 }
