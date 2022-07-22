@@ -46,6 +46,30 @@ class _HomeState extends State<Home> {
                   },
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(32.0),
+                child: DropdownButtonFormField<String>(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "selecione um estado";
+                    }
+                    return null;
+                  },
+                  //o mais importante de tudo é isso aqui ó
+                  items: ['Centro', 'Norte', 'Nordeste', 'Sul', 'Sudeste']
+                      .map<DropdownMenuItem<String>>(
+                    (String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (value) {
+                    debugPrint(value);
+                  },
+                ),
+              ),
               FormField<bool>(
                 initialValue: isChecked,
                 validator: Validator.validateCheckbox,
