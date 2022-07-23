@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formy/email_field.dart';
 import 'package:formy/validator.dart';
 
 void main() {
@@ -50,15 +51,7 @@ class _HomeState extends State<Home> {
                     //TODO: adicionar widget de campo de data de nascimento
                     //TODO: adicionar widget de campo de turma
 
-                    Padding(
-                      padding: const EdgeInsets.all(32.0),
-                      child: TextFormField(
-                        validator: Validator.validateEmail,
-                        onSaved: (value) {
-                          debugPrint('enviando dados para api');
-                        },
-                      ),
-                    ),
+                    const EmailField(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
