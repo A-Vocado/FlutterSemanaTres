@@ -43,6 +43,13 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    //TODO: adicionar widget de campo de nome
+                    //TODO: adicionar widget de campo de senha
+                    //TODO: adicionar widget de campo de confirmação de senha
+                    //TODO: adicionar widget de campo de cpf
+                    //TODO: adicionar widget de campo de data de nascimento
+                    //TODO: adicionar widget de campo de turma
+
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
