@@ -55,8 +55,9 @@ class _HomeState extends State<Home> {
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
+                        decoration: const InputDecoration(labelText: 'Turma'),
                         validator: Validator.validateStatesDropdown,
-                        items: ['Centro', 'Norte', 'Nordeste', 'Sul', 'Sudeste']
+                        items: ['Flutter', 'NodeJS', 'QA']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(

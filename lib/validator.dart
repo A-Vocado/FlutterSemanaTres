@@ -1,5 +1,6 @@
 class Validator {
   //TODO: criar método para validar nome
+
   //TODO: criar método para validar senha
   //TODO: criar método para validar CPF
   //TODO: criar método para validar data de nascimento
