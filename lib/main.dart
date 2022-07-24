@@ -45,13 +45,14 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
 
+
                     const EmailField(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(labelText: 'Turma'),
                         validator: Validator.validateStatesDropdown,
-                        items: ['Flutter', 'NodeJS', 'QA']
+                        items: ['Teste', 'NodeJS', 'QA']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(
