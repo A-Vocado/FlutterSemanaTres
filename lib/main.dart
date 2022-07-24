@@ -82,21 +82,29 @@ class _HomeState extends State<Home> {
                       builder: (state) {
                         return Column(
                           children: [
-                            Checkbox(
-                              value: isCheckedBox,
-                              onChanged: (value) {
-                                setState(() {
-                                  isCheckedBox = !isCheckedBox;
-                                  state.didChange(value);
-                                });
-                              },
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Transform.scale(
+                                scale: 1.3,
+                                child: Checkbox(
+                                  value: isCheckedBox,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isCheckedBox = !isCheckedBox;
+                                      state.didChange(value);
+                                    });
+                                  },
+                                  activeColor: Colors.pink,
+                                  checkColor: Colors.white,
+                                ),
+                              ),
                             ),
                             state.errorText == null
                                 ? Container()
                                 : const Text(
                                     'aceite o contrato, por favor',
                                     style: TextStyle(
-                                      color: Colors.amber,
+                                      color: Colors.red,
                                     ),
                                   ),
                           ],
@@ -105,12 +113,12 @@ class _HomeState extends State<Home> {
                     ),
                     ElevatedButton(
                       onPressed: _registerBottom,
-                      child: const Text("Criar Conta"),
+                      child: Text("Criar Conta"),
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.red),
                           padding:
-                              MaterialStateProperty.all(EdgeInsets.all(20)),
+                              MaterialStateProperty.all(EdgeInsets.all(15)),
                           textStyle: MaterialStateProperty.all(
                               TextStyle(fontSize: 20))),
                     ),
