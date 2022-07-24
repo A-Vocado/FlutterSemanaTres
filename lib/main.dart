@@ -106,6 +106,13 @@ class _HomeState extends State<Home> {
                     ElevatedButton(
                       onPressed: _registerBottom,
                       child: const Text("Criar Conta"),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.red),
+                          padding:
+                              MaterialStateProperty.all(EdgeInsets.all(20)),
+                          textStyle: MaterialStateProperty.all(
+                              TextStyle(fontSize: 20))),
                     ),
                   ],
                 ),
