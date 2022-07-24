@@ -44,22 +44,17 @@ class Validator {
     final standardCpf = RegExp(
         r"(?!(\d)\1{2}.\1{3}.\1{3}-\1{2})\d{3}\.\d{3}\.\d{3}\-\d{2}"); //padrão 000.000.000-00
 
-    //Campo Vazio
+    //RN01
     if (value == null || value.isEmpty) {
       return 'O campo não pode ser vazio';
     }
 
-    // Sem espaços
+    //RN03
     if (value.contains(' ')) {
       return 'O campo não pode conter espaços';
     }
 
-    // Sem letras
-    if (value.contains(RegExp(r'^[0-9]*$'))) {
-      return 'O campo não pode ter letras, apenas números';
-    }
-
-    // Formato invalido
+    //RN02
     if (!value.contains(standardCpf)) {
       return 'Formato inválido, por favor utilize o formato 000.000.000-00';
     }
@@ -70,10 +65,12 @@ class Validator {
     final dateFormat = RegExp(
         r"((0[1-9])|([1-2][0-9])|(3[0-1]))[/](([0][1-9])|([0][1-9])|(1[0-2]))[/]((19[2-9][0-9])|(20[0-9][0-9]))");
 
+    //RN01
     if (value == null || value.isEmpty) {
       return 'O campo não pode ser vazio';
     }
 
+    //RN02, RN03, RN04, RN05
     if (!value.contains(dateFormat)) {
       return 'Formato de data inválido, digite no formato dd/mm/aaaa';
     }
