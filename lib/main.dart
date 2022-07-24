@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(labelText: 'Turma'),
                         validator: Validator.validateStatesDropdown,
-                        items: ['Flutter', 'NodeJS', 'QA']
+                        items: ['Teste', 'NodeJS', 'QA']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(
