@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:formy/birthday_field.dart';
 import 'package:formy/email_field.dart';
 import 'package:formy/validator.dart';
+import 'cpf_field.dart';
+import 'birthday_field.dart';
 
 void main() {
   runApp(const App());
@@ -44,14 +47,9 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    //TODO: adicionar widget de campo de nome
-                    //TODO: adicionar widget de campo de senha
-                    //TODO: adicionar widget de campo de confirmação de senha
-                    //TODO: adicionar widget de campo de cpf
-                    //TODO: adicionar widget de campo de data de nascimento
-                    //TODO: adicionar widget de campo de turma
-
                     const EmailField(),
+                    const CpfField(),
+                    const BirthField(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
