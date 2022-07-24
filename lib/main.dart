@@ -27,11 +27,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
 
-  bool isChecked = false;
+  bool isCheckedBox = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        title: const Text('Raro Buddy'),
+      ),
       body: Form(
         key: formMasterKey,
         child: LayoutBuilder(
@@ -72,16 +76,16 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     FormField<bool>(
-                      initialValue: isChecked,
+                      initialValue: isCheckedBox,
                       validator: Validator.validateCheckbox,
                       builder: (state) {
                         return Column(
                           children: [
                             Checkbox(
-                              value: isChecked,
+                              value: isCheckedBox,
                               onChanged: (value) {
                                 setState(() {
-                                  isChecked = !isChecked;
+                                  isCheckedBox = !isCheckedBox;
                                   state.didChange(value);
                                 });
                               },
@@ -91,7 +95,7 @@ class _HomeState extends State<Home> {
                                 : const Text(
                                     'aceite o contrato, por favor',
                                     style: TextStyle(
-                                      color: Colors.red,
+                                      color: Colors.amber,
                                     ),
                                   ),
                           ],
@@ -99,8 +103,8 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     ElevatedButton(
-                      onPressed: _register,
-                      child: const Text("Cadastrar"),
+                      onPressed: _registerBottom,
+                      child: const Text("Criar Conta"),
                     ),
                   ],
                 ),
@@ -112,12 +116,12 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _register() {
+  void _registerBottom() {
     if (formMasterKey.currentState!.validate()) {
-      debugPrint('cadastro realizado com sucesso');
+      debugPrint('Cadastro realizado com sucesso');
       formMasterKey.currentState!.save();
     } else {
-      debugPrint('corrija os erros e tente novamente');
+      debugPrint('Corrija os erros e tente novamente');
     }
   }
 }
