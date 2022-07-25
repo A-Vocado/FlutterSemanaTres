@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blue[900],
         title: const Text('Raro Buddy'),
       ),
       body: Form(
@@ -94,7 +94,7 @@ class _HomeState extends State<Home> {
                                       state.didChange(value);
                                     });
                                   },
-                                  activeColor: Colors.pink,
+                                  activeColor: Colors.blue[900],
                                   checkColor: Colors.white,
                                 ),
                               ),
@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
                       child: Text("Criar Conta"),
                       style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.red),
+                              MaterialStateProperty.all(Colors.blue[900]),
                           padding:
                               MaterialStateProperty.all(EdgeInsets.all(15)),
                           textStyle: MaterialStateProperty.all(
