@@ -29,7 +29,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
- bool isCheckedBox = false;
+  bool isCheckedBox = false;
   String selectedGenre = '';
   @override
   Widget build(BuildContext context) {
@@ -51,46 +51,53 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Identidade de Genêro'),
-                    RadioListTile(
-                        title: Text('Masculino'),
-                        activeColor: Colors.red,
-                        value: 'Masculino',
-                        groupValue: selectedGenre,
-                        onChanged: (String? valor) {
-                          setState(() {
-                            selectedGenre = valor!;
-                          });
-                        }),
-                    RadioListTile(
-                        title: Text('Feminino'),
-                        activeColor: Colors.red,
-                        value: 'Feminino',
-                        groupValue: selectedGenre,
-                        onChanged: (String? valor) {
-                          setState(() {
-                            selectedGenre = valor!;
-                          });
-                        }),
-                    RadioListTile(
-                        title: Text('Outro'),
-                        activeColor: Colors.red,
-                        value: 'Outro',
-                        groupValue: selectedGenre,
-                        onChanged: (String? valor) {
-                          setState(() {
-                            selectedGenre = valor!;
-                          });
-                        }),
                     const EmailField(),
                     const CpfField(),
                     const BirthField(),
+                    const Text('Identidade de Genêro'),
+                    RadioListTile(
+                      title: const Text('Masculino'),
+                      activeColor: Colors.red,
+                      value: 'Masculino',
+                      groupValue: selectedGenre,
+                      onChanged: (String? valor) {
+                        setState(
+                          () {
+                            selectedGenre = valor!;
+                          },
+                        );
+                      },
+                    ),
+                    RadioListTile(
+                      title: const Text('Feminino'),
+                      activeColor: Colors.red,
+                      value: 'Feminino',
+                      groupValue: selectedGenre,
+                      onChanged: (String? valor) {
+                        setState(
+                          () {
+                            selectedGenre = valor!;
+                          },
+                        );
+                      },
+                    ),
+                    RadioListTile(
+                      title: const Text('Outro'),
+                      activeColor: Colors.red,
+                      value: 'Outro',
+                      groupValue: selectedGenre,
+                      onChanged: (String? valor) {
+                        setState(() {
+                          selectedGenre = valor!;
+                        });
+                      },
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(labelText: 'Turma'),
                         validator: Validator.validateStatesDropdown,
-                        items: ['Teste', 'NodeJS', 'QA']
+                        items: ['Flutter', 'NodeJS', 'QA']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(
@@ -117,10 +124,12 @@ class _HomeState extends State<Home> {
                                 child: Checkbox(
                                   value: isCheckedBox,
                                   onChanged: (value) {
-                                    setState(() {
-                                      isCheckedBox = !isCheckedBox;
-                                      state.didChange(value);
-                                    });
+                                    setState(
+                                      () {
+                                        isCheckedBox = !isCheckedBox;
+                                        state.didChange(value);
+                                      },
+                                    );
                                   },
                                   activeColor: Colors.blue[900],
                                   checkColor: Colors.white,
@@ -130,7 +139,7 @@ class _HomeState extends State<Home> {
                             state.errorText == null
                                 ? Container()
                                 : const Text(
-                                    'aceite o contrato, por favor',
+                                    'Aceite o contrato, por favor',
                                     style: TextStyle(
                                       color: Colors.red,
                                     ),
@@ -140,15 +149,15 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     ElevatedButton(
-                      onPressed: _registerBottom,
-                      child: Text("Criar Conta"),
+                      onPressed: _registerButton,
                       style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blue[900]),
-                          padding:
-                              MaterialStateProperty.all(EdgeInsets.all(15)),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(15)),
                           textStyle: MaterialStateProperty.all(
-                              TextStyle(fontSize: 20))),
+                              const TextStyle(fontSize: 20))),
+                      child: const Text("Criar Conta"),
                     ),
                   ],
                 ),
@@ -160,7 +169,7 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _registerBottom() {
+  void _registerButton() {
     if (formMasterKey.currentState!.validate()) {
       debugPrint('Cadastro realizado com sucesso');
       formMasterKey.currentState!.save();
