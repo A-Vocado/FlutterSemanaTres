@@ -30,7 +30,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
   bool isChecked = false;
-  String selectedGenre = '';
+  String selectedGenre = 'Masculino';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,9 +46,12 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Identidade de Genêro'),
+                    const Text(
+                      'Identidade de Gênero',
+                      textAlign: TextAlign.start,
+                    ),
                     RadioListTile(
-                        title: Text('Masculino'),
+                        title: const Text('Masculino'),
                         activeColor: Colors.red,
                         value: 'Masculino',
                         groupValue: selectedGenre,
@@ -58,7 +61,7 @@ class _HomeState extends State<Home> {
                           });
                         }),
                     RadioListTile(
-                        title: Text('Feminino'),
+                        title: const Text('Feminino'),
                         activeColor: Colors.red,
                         value: 'Feminino',
                         groupValue: selectedGenre,
@@ -68,7 +71,7 @@ class _HomeState extends State<Home> {
                           });
                         }),
                     RadioListTile(
-                        title: Text('Outro'),
+                        title: const Text('Outro'),
                         activeColor: Colors.red,
                         value: 'Outro',
                         groupValue: selectedGenre,
@@ -81,11 +84,11 @@ class _HomeState extends State<Home> {
                     const CpfField(),
                     const BirthField(),
                     Padding(
-                      padding: const EdgeInsets.all(15.0),
+                      padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
                         decoration: const InputDecoration(labelText: 'Turma'),
                         validator: Validator.validateStatesDropdown,
-                        items: ['Teste', 'NodeJS', 'QA']
+                        items: ['Flutter', 'NodeJS', 'QA']
                             .map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(

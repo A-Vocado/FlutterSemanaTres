@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:formy/validator.dart';
 
 class CpfField extends StatelessWidget {
@@ -11,6 +12,7 @@ class CpfField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: TextFormField(
+        keyboardType: TextInputType.number,
         validator: Validator.validateCPF,
         decoration:
             const InputDecoration(hintText: '000.000.000-00', labelText: 'CPF'),

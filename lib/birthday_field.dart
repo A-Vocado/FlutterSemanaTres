@@ -11,6 +11,7 @@ class BirthField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: TextFormField(
+        keyboardType: TextInputType.number,
         validator: Validator.validateBirth,
         decoration: const InputDecoration(
             hintText: 'dd/mmm/aaaa', labelText: 'Data de Nascimento'),
