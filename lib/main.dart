@@ -29,11 +29,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
-  bool isChecked = false;
+ bool isCheckedBox = false;
   String selectedGenre = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
+      appBar: AppBar(
+        backgroundColor: Colors.blue[900],
+        title: const Text('Raro Buddy'),
+      ),
       body: Form(
         key: formMasterKey,
         child: LayoutBuilder(
@@ -100,19 +105,27 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     FormField<bool>(
-                      initialValue: isChecked,
+                      initialValue: isCheckedBox,
                       validator: Validator.validateCheckbox,
                       builder: (state) {
                         return Column(
                           children: [
-                            Checkbox(
-                              value: isChecked,
-                              onChanged: (value) {
-                                setState(() {
-                                  isChecked = !isChecked;
-                                  state.didChange(value);
-                                });
-                              },
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Transform.scale(
+                                scale: 1.3,
+                                child: Checkbox(
+                                  value: isCheckedBox,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      isCheckedBox = !isCheckedBox;
+                                      state.didChange(value);
+                                    });
+                                  },
+                                  activeColor: Colors.blue[900],
+                                  checkColor: Colors.white,
+                                ),
+                              ),
                             ),
                             state.errorText == null
                                 ? Container()
@@ -127,8 +140,15 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     ElevatedButton(
-                      onPressed: _register,
-                      child: const Text("Cadastrar"),
+                      onPressed: _registerBottom,
+                      child: Text("Criar Conta"),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue[900]),
+                          padding:
+                              MaterialStateProperty.all(EdgeInsets.all(15)),
+                          textStyle: MaterialStateProperty.all(
+                              TextStyle(fontSize: 20))),
                     ),
                   ],
                 ),
@@ -140,12 +160,12 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void _register() {
+  void _registerBottom() {
     if (formMasterKey.currentState!.validate()) {
-      debugPrint('cadastro realizado com sucesso');
+      debugPrint('Cadastro realizado com sucesso');
       formMasterKey.currentState!.save();
     } else {
-      debugPrint('corrija os erros e tente novamente');
+      debugPrint('Corrija os erros e tente novamente');
     }
   }
 }
