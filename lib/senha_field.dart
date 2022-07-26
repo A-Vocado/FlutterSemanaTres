@@ -13,7 +13,7 @@ class EmailField extends StatelessWidget {
       child: TextFormField(
         decoration: const InputDecoration(labelText: 'senha'),
         keyboardType: TextInputType.emailAddress,
-        validator: Validator.validateEmail,
+        validator: Validator.validateSenha,
         onSaved: (value) {
           debugPrint('enviando dados para api');
         },
