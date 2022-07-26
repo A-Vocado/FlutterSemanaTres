@@ -54,7 +54,8 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.fromLTRB(1, 25, 5, 25),
                       child: Text(
                         'Criar Conta',
-                        style: TextStyle(fontSize: 25),
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                     ),
                     Text('Identidade de Genêro'),
@@ -117,7 +118,7 @@ class _HomeState extends State<Home> {
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(30, 10, 5, 10),
+                              padding: const EdgeInsets.fromLTRB(50, 5, 5, 10),
                               child: CheckboxListTile(
                                 title: Text(
                                     'Eu li e aceito os termos do contrato'),
