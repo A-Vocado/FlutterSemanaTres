@@ -68,8 +68,8 @@ class _HomeState extends State<Home> {
                         validate: Validator.validateEmail,
                         icon: Icon(Icons.mail),
                       ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 25, 5, 25),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 25, 5, 25),
                       child: Text(
                         'Criar Conta',
                         style: TextStyle(
@@ -130,12 +130,12 @@ class _HomeState extends State<Home> {
                                       ? Icons.visibility_off
                                       : Icons.visibility)))),
                     ),
-                    InputField(
+                   const InputField(
                       labelTxt: 'CPF',
                       hintTxt: '000.000.000-00',
                       validate: Validator.validateCPF,
                     ),
-                    InputField(
+                    const InputField(
                       labelTxt: 'Data de Nascimento',
                       hintTxt: 'dd/mmm/aaaa',
                       validate: Validator.validateBirth,
@@ -208,7 +208,7 @@ class _HomeState extends State<Home> {
                               child: Transform.scale(
                                 scale: 1,
                                 child: CheckboxListTile(
-                                  title: Text(
+                                  title: const Text(
                                     'Eu li e aceito os termos do contrato',
                                     style: TextStyle(fontSize: 12),
                                   ),
