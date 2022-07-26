@@ -12,7 +12,7 @@ class EmailField extends StatelessWidget {
       padding: const EdgeInsets.all(32.0),
       child: TextFormField(
         decoration: const InputDecoration(labelText: 'senha'),
-        keyboardType: TextInputType.emailAddress,
+        keyboardType: TextInputType.visiblePassword,
         validator: Validator.validateSenha,
         onSaved: (value) {
           debugPrint('enviando dados para api');
