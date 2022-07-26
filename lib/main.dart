@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:formy/birthday_field.dart';
 import 'package:formy/email_field.dart';
 import 'package:formy/validator.dart';
-import 'cpf_field.dart';
-import 'birthday_field.dart';
+import 'input_field.dart';
 
 void main() {
   runApp(const App());
@@ -52,8 +50,16 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const EmailField(),
-                    const CpfField(),
-                    const BirthField(),
+                    InputField(
+                      labelTxt: 'CPF',
+                      hintTxt: '000.000.000-00',
+                      validate: Validator.validateCPF,
+                    ),
+                    InputField(
+                      labelTxt: 'Data de Nascimento',
+                      hintTxt: 'dd/mmm/aaaa',
+                      validate: Validator.validateBirth,
+                    ),
                     const Text('Identidade de Genêro'),
                     RadioListTile(
                       title: const Text('Masculino'),
