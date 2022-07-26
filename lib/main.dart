@@ -34,7 +34,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
         title: const Text('Raro Buddy'),
