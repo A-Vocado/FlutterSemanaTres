@@ -1,3 +1,4 @@
+import 'package:formy/confirmacao_field.dart';
 import 'package:formy/senha_field.dart';
 
 class Validator {
@@ -39,17 +40,14 @@ class Validator {
 
   static String? validateNome(String? value) {
 
-    final rfc5322 = RegExp(
-        r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+");
-
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
 
-    if (!value.contains(rfc5322)) {
-      return 'nome inválido, digite seu nome corretamente';
-    }
-    return null;
+    //if (!value.contains(rfc5322)) {
+      //return 'nome inválido, digite seu nome corretamente';
+    //}
+    //return null;
   }
 
   static String? validateSenha(String? value) {
@@ -57,8 +55,7 @@ class Validator {
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
-
-    
+ 
     return null;
   }
 
@@ -68,7 +65,7 @@ class Validator {
       return 'o campo não pode ser vazio';
     }
 
-    if (value != SenhaField) {
+    if (ConfirmacaoField != SenhaField) {
       return 'Senhas não conferem';
     }
 
