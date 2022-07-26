@@ -49,8 +49,8 @@ class _HomeState extends State<Home> {
                   children: [
                     const NomeField(),
                     const SenhaField(),
-                    const EmailField(),
                     const ConfirmacaoField(),
+                    const EmailField(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
