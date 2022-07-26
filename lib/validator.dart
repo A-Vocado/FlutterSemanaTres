@@ -1,12 +1,4 @@
 class Validator {
-  //TODO: criar método para validar nome - Hazel
-  //TODO: criar método para validar senha - Hazel
-  //TODO: criar método para validar CPF - Eu
-  //TODO: criar método para validar data de nascimento - Eu
-  //TODO: criar método para validar identidade de gênero - Rafaella
-  //TODO: criar método para validar turma - Rafaella
-  //TODO: criar método para validar aceite de termos - Samara
-
   static String? validateEmail(String? value) {
     final upperCase = RegExp(r'[A-Z]');
 
@@ -25,7 +17,17 @@ class Validator {
     }
     return null;
   }
-
+ static String? validatePassword(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'o campo não pode ser vazio';
+    }
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~_]).{8,}$';
+    RegExp regExp = new RegExp(pattern);
+    if (!regExp.hasMatch(value)) {
+      return 'a senha não é considerada uma senha forte';
+    }
+  }
   static String? validateCheckbox(bool? value) {
     if (value != null && !value) {
       return 'aceite o contrato, por favor';

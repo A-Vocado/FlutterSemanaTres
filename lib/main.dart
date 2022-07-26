@@ -28,7 +28,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
   bool isCheckedBox = false;
+  bool isObscure = true;
   String selectedGenre = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +51,60 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // const EmailField(),
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: TextFormField(
+                          onChanged: (passwordUser) {
+                            password = passwordUser;
+                          },
+                          validator: Validator.validatePassword,
+                          obscureText: isObscure,
+                          obscuringCharacter: "*",
+                          keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                              labelText: 'Senha',
+                              hintText: 'Digite sua senha',
+                              suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    isObscure = !isObscure;
+                                    setState(() {});
+                                  },
+                                  child: Icon(isObscure
+                                      ? Icons.visibility_off
+                                      : Icons.visibility)))),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(32.0),
+                      child: TextFormField(
+                          onChanged: (passwordUser) {
+                            password = passwordUser;
+                          },
+                          validator: ((value) {
+                            if (value == null || value.isEmpty) {
+                              return 'o campo não pode ser vazio';
+                            }
+                            if (value != password) {
+                              'As senhas não conferem';
+                            }
+                            return null;
+                          }),
+                          obscureText: isObscure,
+                          obscuringCharacter: "*",
+                          keyboardType: TextInputType.visiblePassword,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                              labelText: 'Confirmar Senha',
+                              hintText: 'Digite sua senha',
+                              suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    isObscure = !isObscure;
+                                    setState(() {});
+                                  },
+                                  child: Icon(isObscure
+                                      ? Icons.visibility_off
+                                      : Icons.visibility)))),
+                    ),
                     InputField(
                       labelTxt: 'CPF',
                       hintTxt: '000.000.000-00',
