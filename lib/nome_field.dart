@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:formy/validator.dart';
 
-class EmailField extends StatelessWidget {
-  const EmailField({
+class NomeField extends StatelessWidget {
+  const NomeField({
     Key? key,
   }) : super(key: key);
 
