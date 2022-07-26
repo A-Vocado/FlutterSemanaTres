@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formy/email_field.dart';
+//  //import 'package:formy/email_field.dart';
 import 'package:formy/validator.dart';
 import 'input_field.dart';
 
@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const EmailField(),
+                    // const EmailField(),
                     InputField(
                       labelTxt: 'CPF',
                       hintTxt: '000.000.000-00',
