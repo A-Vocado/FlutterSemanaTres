@@ -13,6 +13,7 @@ class ConfirmacaoField extends StatelessWidget {
       child: TextFormField(
         decoration: const InputDecoration(labelText: 'Confirme sua senha'),
         keyboardType: TextInputType.visiblePassword,
+        obscureText: true,
         validator: Validator.validateConfirmacao,
         onSaved: (value) {
           debugPrint('enviando dados para api');
