@@ -116,18 +116,21 @@ class _HomeState extends State<Home> {
                       builder: (state) {
                         return Column(
                           children: [
-                            CheckboxListTile(
-                              title:
-                                  Text('Eu li e aceito os termos do contrato'),
-                              value: isCheckedBox,
-                              onChanged: (value) {
-                                setState(() {
-                                  isCheckedBox = !isCheckedBox;
-                                  state.didChange(value);
-                                });
-                              },
-                              activeColor: Colors.blue[900],
-                              checkColor: Colors.white,
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(30, 10, 5, 10),
+                              child: CheckboxListTile(
+                                title: Text(
+                                    'Eu li e aceito os termos do contrato'),
+                                value: isCheckedBox,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isCheckedBox = !isCheckedBox;
+                                    state.didChange(value);
+                                  });
+                                },
+                                activeColor: Colors.blue[900],
+                                checkColor: Colors.white,
+                              ),
                             ),
                             state.errorText == null
                                 ? Container()
@@ -141,16 +144,19 @@ class _HomeState extends State<Home> {
                         );
                       },
                     ),
-                    ElevatedButton(
-                      onPressed: _registerBottom,
-                      child: Text("Criar Conta"),
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue[900]),
-                          padding:
-                              MaterialStateProperty.all(EdgeInsets.all(10)),
-                          textStyle: MaterialStateProperty.all(
-                              TextStyle(fontSize: 20))),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 20),
+                      child: ElevatedButton(
+                        onPressed: _registerBottom,
+                        child: Text("Criar Conta"),
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.blue[900]),
+                            padding:
+                                MaterialStateProperty.all(EdgeInsets.all(10)),
+                            textStyle: MaterialStateProperty.all(
+                                TextStyle(fontSize: 20))),
+                      ),
                     ),
                   ],
                 ),
