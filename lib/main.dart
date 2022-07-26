@@ -1,6 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
-//  //import 'package:formy/email_field.dart';
+import 'package:flutter/services.dart';
 import 'package:formy/validator.dart';
 import 'input_field.dart';
 
@@ -52,8 +52,8 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 25, 5, 25),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 25, 5, 25),
                       child: Text(
                         'Criar Conta',
                         style: TextStyle(
@@ -63,63 +63,72 @@ class _HomeState extends State<Home> {
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
-                          onChanged: (passwordUser) {
-                            password = passwordUser;
-                          },
-                          validator: Validator.validatePassword,
-                          obscureText: isObscure,
-                          obscuringCharacter: "*",
-                          keyboardType: TextInputType.visiblePassword,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                              labelText: 'Senha',
-                              hintText: 'Digite sua senha',
-                              suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    isObscure = !isObscure;
-                                    setState(() {});
-                                  },
-                                  child: Icon(isObscure
-                                      ? Icons.visibility_off
-                                      : Icons.visibility)))),
+                        onChanged: (passwordUser) {
+                          password = passwordUser;
+                        },
+                        validator: Validator.validatePassword,
+                        obscureText: isObscure,
+                        obscuringCharacter: "*",
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'Senha',
+                          hintText: 'Digite sua senha',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              isObscure = !isObscure;
+                              setState(() {});
+                            },
+                            child: Icon(isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                        ),
+                      ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
-                          onChanged: (passwordUser) {
-                            password = passwordUser;
-                          },
-                          validator: ((value) {
-                            if (value == null || value.isEmpty) {
-                              return 'o campo não pode ser vazio';
-                            }
-                            if (value != password) {
-                              'As senhas não conferem';
-                            }
-                            return null;
-                          }),
-                          obscureText: isObscure,
-                          obscuringCharacter: "*",
-                          keyboardType: TextInputType.visiblePassword,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                              labelText: 'Confirmar Senha',
-                              hintText: 'Digite sua senha',
-                              suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    isObscure = !isObscure;
-                                    setState(() {});
-                                  },
-                                  child: Icon(isObscure
-                                      ? Icons.visibility_off
-                                      : Icons.visibility)))),
+                        onChanged: (passwordUser) {
+                          password = passwordUser;
+                        },
+                        validator: ((value) {
+                          if (value == null || value.isEmpty) {
+                            return 'o campo não pode ser vazio';
+                          }
+                          if (value != password) {
+                            'As senhas não conferem';
+                          }
+                          return null;
+                        }),
+                        obscureText: isObscure,
+                        obscuringCharacter: "*",
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'Confirmar Senha',
+                          hintText: 'Digite sua senha',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              isObscure = !isObscure;
+                              setState(() {});
+                            },
+                            child: Icon(isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                        ),
+                      ),
                     ),
                     InputField(
                       labelTxt: 'CPF',
                       hintTxt: '000.000.000-00',
                       validate: Validator.validateCPF,
                       keyboardNumbers: TextInputType.number,
-                      maskFormatter: [CpfInputFormatter()],
+                      maskFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter()
+                      ],
                       icon: const Icon(Icons.badge),
                     ),
                     InputField(
@@ -127,7 +136,10 @@ class _HomeState extends State<Home> {
                         hintTxt: 'dd/mmm/aaaa',
                         validate: Validator.validateBirth,
                         keyboardNumbers: TextInputType.number,
-                        maskFormatter: [DataInputFormatter()],
+                        maskFormatter: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          DataInputFormatter()
+                        ],
                         icon: const Icon(Icons.cake)),
                     const Text('Identidade de Genêro'),
                     RadioListTile(
@@ -197,7 +209,7 @@ class _HomeState extends State<Home> {
                               child: Transform.scale(
                                 scale: 1,
                                 child: CheckboxListTile(
-                                  title: Text(
+                                  title: const Text(
                                     'Eu li e aceito os termos do contrato',
                                     style: TextStyle(fontSize: 12),
                                   ),

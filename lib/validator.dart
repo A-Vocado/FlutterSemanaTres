@@ -17,17 +17,18 @@ class Validator {
     }
     return null;
   }
- static String? validatePassword(String? value) {
+
+  static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
-    String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~_]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
+    String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~_]).{8,}$';
+    RegExp regExp = RegExp(pattern);
     if (!regExp.hasMatch(value)) {
       return 'a senha não é considerada uma senha forte';
     }
   }
+
   static String? validateCheckbox(bool? value) {
     if (value != null && !value) {
       return 'aceite o contrato, por favor';
