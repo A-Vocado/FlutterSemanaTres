@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formy/email_field.dart';
+import 'package:formy/nome_field.dart';
 import 'package:formy/senha_field.dart';
 import 'package:formy/validator.dart';
 
@@ -45,7 +46,7 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
+                    const NomeField(),
                     const SenhaField(),
                     const EmailField(),
                     Padding(
