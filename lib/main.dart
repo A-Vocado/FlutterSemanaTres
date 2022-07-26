@@ -29,7 +29,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
- bool isCheckedBox = false;
+  bool isCheckedBox = false;
   String selectedGenre = '';
   @override
   Widget build(BuildContext context) {
@@ -51,6 +51,13 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(1, 25, 5, 25),
+                      child: Text(
+                        'Criar Conta',
+                        style: TextStyle(fontSize: 25),
+                      ),
+                    ),
                     Text('Identidade de Genêro'),
                     RadioListTile(
                         title: Text('Masculino'),
@@ -110,22 +117,18 @@ class _HomeState extends State<Home> {
                       builder: (state) {
                         return Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Transform.scale(
-                                scale: 1.3,
-                                child: Checkbox(
-                                  value: isCheckedBox,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      isCheckedBox = !isCheckedBox;
-                                      state.didChange(value);
-                                    });
-                                  },
-                                  activeColor: Colors.blue[900],
-                                  checkColor: Colors.white,
-                                ),
-                              ),
+                            CheckboxListTile(
+                              title:
+                                  Text('Eu li e aceito os termos do contrato'),
+                              value: isCheckedBox,
+                              onChanged: (value) {
+                                setState(() {
+                                  isCheckedBox = !isCheckedBox;
+                                  state.didChange(value);
+                                });
+                              },
+                              activeColor: Colors.blue[900],
+                              checkColor: Colors.white,
                             ),
                             state.errorText == null
                                 ? Container()
@@ -146,7 +149,7 @@ class _HomeState extends State<Home> {
                           backgroundColor:
                               MaterialStateProperty.all(Colors.blue[900]),
                           padding:
-                              MaterialStateProperty.all(EdgeInsets.all(15)),
+                              MaterialStateProperty.all(EdgeInsets.all(10)),
                           textStyle: MaterialStateProperty.all(
                               TextStyle(fontSize: 20))),
                     ),
