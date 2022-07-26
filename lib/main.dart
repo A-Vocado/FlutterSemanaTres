@@ -1,5 +1,5 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
-//  //import 'package:formy/email_field.dart';
 import 'package:formy/validator.dart';
 import 'input_field.dart';
 
@@ -31,6 +31,7 @@ class _HomeState extends State<Home> {
   bool isObscure = true;
   String selectedGenre = '';
   String password = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,95 +52,117 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const InputField(
-                          keyboardType: TextInputType.name,
-                          textInputAction: TextInputAction.next,
-                          textCapitalization: TextCapitalization.words,
-                          labelTxt: 'Nome completo',
-                          hintTxt: 'Digite seu nome',
-                          icon: Icon(Icons.person),
-                          validate: Validator.validateName),
-                      // const EmailField(),
-                      const InputField(
-                        keyboardType: TextInputType.emailAddress,
-                        textInputAction: TextInputAction.next,
-                        labelTxt: 'Email',
-                        hintTxt: 'Digite seu email',
-                        validate: Validator.validateEmail,
-                        icon: Icon(Icons.mail),
-                      ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 25, 5, 25),
+                    const Padding(
+                      padding: EdgeInsets.fromLTRB(0, 25, 5, 25),
                       child: Text(
                         'Criar Conta',
                         style: TextStyle(
                             fontSize: 25, fontWeight: FontWeight.bold),
                       ),
                     ),
+
+                    // Name
+                    InputField(
+                        keyboardType: TextInputType.name,
+                        textInputAction: TextInputAction.next,
+                        textCapitalization: TextCapitalization.words,
+                        labelTxt: 'Nome completo',
+                        hintTxt: 'Digite seu nome',
+                        icon: const Icon(Icons.person),
+                        validate: Validator.validateName),
+
+                    // Email
+                    InputField(
+                      keyboardType: TextInputType.emailAddress,
+                      textInputAction: TextInputAction.next,
+                      labelTxt: 'Email',
+                      hintTxt: 'Digite seu email',
+                      validate: Validator.validateEmail,
+                      icon: const Icon(Icons.mail),
+                    ),
+
+                    //Password
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
-                          onChanged: (passwordUser) {
-                            password = passwordUser;
-                          },
-                          validator: Validator.validatePassword,
-                          obscureText: isObscure,
-                          obscuringCharacter: "*",
-                          keyboardType: TextInputType.visiblePassword,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                              labelText: 'Senha',
-                              hintText: 'Digite sua senha',
-                              suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    isObscure = !isObscure;
-                                    setState(() {});
-                                  },
-                                  child: Icon(isObscure
-                                      ? Icons.visibility_off
-                                      : Icons.visibility)))),
+                        onChanged: (passwordUser) {
+                          password = passwordUser;
+                        },
+                        validator: Validator.validatePassword,
+                        obscureText: isObscure,
+                        obscuringCharacter: "*",
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'Senha',
+                          hintText: 'Digite sua senha',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              isObscure = !isObscure;
+                              setState(() {});
+                            },
+                            child: Icon(isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                        ),
+                      ),
                     ),
+
+                    //Confirm Password
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
-                          onChanged: (passwordUser) {
-                            password = passwordUser;
-                          },
-                          validator: ((value) {
-                            if (value == null || value.isEmpty) {
-                              return 'o campo não pode ser vazio';
-                            }
-                            if (value != password) {
-                              'As senhas não conferem';
-                            }
-                            return null;
-                          }),
-                          obscureText: isObscure,
-                          obscuringCharacter: "*",
-                          keyboardType: TextInputType.visiblePassword,
-                          textInputAction: TextInputAction.next,
-                          decoration: InputDecoration(
-                              labelText: 'Confirmar Senha',
-                              hintText: 'Digite sua senha',
-                              suffixIcon: GestureDetector(
-                                  onTap: () {
-                                    isObscure = !isObscure;
-                                    setState(() {});
-                                  },
-                                  child: Icon(isObscure
-                                      ? Icons.visibility_off
-                                      : Icons.visibility)))),
+                        onChanged: (passwordUser) {
+                          password = passwordUser;
+                        },
+                        validator: ((value) {
+                          if (value == null || value.isEmpty) {
+                            return 'o campo não pode ser vazio';
+                          }
+                          if (value != password) {
+                            'As senhas não conferem';
+                          }
+                          return null;
+                        }),
+                        obscureText: isObscure,
+                        obscuringCharacter: "*",
+                        keyboardType: TextInputType.visiblePassword,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                          labelText: 'Confirmar Senha',
+                          hintText: 'Digite sua senha',
+                          suffixIcon: GestureDetector(
+                            onTap: () {
+                              isObscure = !isObscure;
+                              setState(() {});
+                            },
+                            child: Icon(isObscure
+                                ? Icons.visibility_off
+                                : Icons.visibility),
+                          ),
+                        ),
+                      ),
                     ),
+
+                    //CPF
                     InputField(
                       labelTxt: 'CPF',
                       hintTxt: '000.000.000-00',
                       validate: Validator.validateCPF,
+                      keyboardType: TextInputType.number,
+                      maskFormatter: [CpfInputFormatter()],
+                      icon: const Icon(Icons.badge),
                     ),
+
+                    //Birth
                     InputField(
-                      labelTxt: 'Data de Nascimento',
-                      hintTxt: 'dd/mmm/aaaa',
-                      validate: Validator.validateBirth,
-                    ),
+                        labelTxt: 'Data de Nascimento',
+                        hintTxt: 'dd/mmm/aaaa',
+                        validate: Validator.validateBirth,
+                        keyboardType: TextInputType.number,
+                        maskFormatter: [DataInputFormatter()],
+                        icon: const Icon(Icons.cake)),
                     const Text('Identidade de Genêro'),
                     RadioListTile(
                       title: const Text('Masculino'),
@@ -154,6 +177,8 @@ class _HomeState extends State<Home> {
                         );
                       },
                     ),
+
+                    //Gender
                     RadioListTile(
                       title: const Text('Feminino'),
                       activeColor: Colors.red,
@@ -178,6 +203,8 @@ class _HomeState extends State<Home> {
                         });
                       },
                     ),
+
+                    //Class
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: DropdownButtonFormField<String>(
@@ -208,7 +235,7 @@ class _HomeState extends State<Home> {
                               child: Transform.scale(
                                 scale: 1,
                                 child: CheckboxListTile(
-                                  title: Text(
+                                  title: const Text(
                                     'Eu li e aceito os termos do contrato',
                                     style: TextStyle(fontSize: 12),
                                   ),
@@ -243,12 +270,13 @@ class _HomeState extends State<Home> {
                       child: ElevatedButton(
                         onPressed: _registerButton,
                         style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.blue[900]),
-                            padding: MaterialStateProperty.all(
-                                const EdgeInsets.all(15)),
-                            textStyle: MaterialStateProperty.all(
-                                const TextStyle(fontSize: 20))),
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.blue[900]),
+                          padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(15)),
+                          textStyle: MaterialStateProperty.all(
+                              const TextStyle(fontSize: 20)),
+                        ),
                         child: const Text("Criar Conta"),
                       ),
                     ),
