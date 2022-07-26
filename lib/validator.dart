@@ -1,6 +1,5 @@
 class Validator {
-  //TODO: criar método para validar nome
-
+  //TODO: criar método para validar nome 
   //TODO: criar método para validar senha
   //TODO: criar método para validar CPF
   //TODO: criar método para validar data de nascimento
@@ -33,6 +32,31 @@ class Validator {
     if (!value.contains(rfc5322)) {
       return 'email inválido, digite um email corretamente';
     }
+    return null;
+  }
+
+  static String? validateNome(String? value) {
+
+    final rfc5322 = RegExp(
+        r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+");
+
+    if (value == null || value.isEmpty) {
+      return 'o campo não pode ser vazio';
+    }
+
+    if (!value.contains(rfc5322)) {
+      return 'nome inválido, digite seu nome corretamente';
+    }
+    return null;
+  }
+
+  static String? validateSenha(String? value) {
+    
+    if (value == null || value.isEmpty) {
+      return 'o campo não pode ser vazio';
+    }
+
+    
     return null;
   }
 
