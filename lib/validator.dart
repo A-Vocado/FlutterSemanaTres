@@ -40,14 +40,16 @@ class Validator {
 
   static String? validateNome(String? value) {
 
+    final rfc5322 = RegExp(r'(^[a-zA-Z ]*$)');
+
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
 
-    //if (!value.contains(rfc5322)) {
-      //return 'nome inválido, digite seu nome corretamente';
-    //}
-    //return null;
+    if (!value.contains(rfc5322)) {
+      return 'nome inválido, digite seu nome corretamente';
+    }
+    return null;
   }
 
   static String? validateSenha(String? value) {
