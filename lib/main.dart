@@ -45,7 +45,7 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
 
-
+                    const SenhaField(),
                     const EmailField(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
