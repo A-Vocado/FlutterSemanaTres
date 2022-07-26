@@ -2,7 +2,7 @@ import 'package:formy/confirmacao_field.dart';
 import 'package:formy/senha_field.dart';
 
 class Validator {
-  //TODO: criar método para validar nome 
+  //TODO: criar método para validar nome
   //TODO: criar método para validar senha
   //TODO: criar método para validar CPF
   //TODO: criar método para validar data de nascimento
@@ -39,8 +39,7 @@ class Validator {
   }
 
   static String? validateNome(String? value) {
-
-    final rfc5322 = RegExp(r'(^[a-zA-Z ]*$)');
+    final rfc5322 = RegExp(r'(^[a-zA-Z ]*[A-Z][a-z]* [A-Z][a-z])');
 
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
@@ -53,16 +52,18 @@ class Validator {
   }
 
   static String? validateSenha(String? value) {
-    
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
- 
+
+    if (value.length < 8) {
+      return 'A senha precisa ter 8 caracteres';
+    }
+
     return null;
   }
 
   static String? validateConfirmacao(String? value) {
-    
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
