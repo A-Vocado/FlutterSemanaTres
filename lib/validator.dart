@@ -5,9 +5,13 @@ class Validator {
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
+    if (value.contains('.')) {
+      return 'Abreviações com ponto não aceitas';
+    }
     if (!value.contains(rfc5322)) {
       return 'nome inválido, digite seu nome corretamente';
     }
+    return null;
   }
 
   static String? validateEmail(String? value) {
@@ -24,7 +28,7 @@ class Validator {
       return 'o campo não pode conter espaços';
     }
     if (!value.contains(rfc5322)) {
-      return 'email inválido, digite um email corretamente';
+      return 'email inválido';
     }
     return null;
   }
@@ -34,10 +38,11 @@ class Validator {
       return 'o campo não pode ser vazio';
     }
     String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~_]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (!regExp.hasMatch(value)) {
       return 'a senha não é considerada uma senha forte';
     }
+    return null;
   }
 
   static String? validateCheckbox(bool? value) {
