@@ -11,8 +11,9 @@ class SenhaField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: TextFormField(
-        decoration: const InputDecoration(labelText: 'senha'),
+        decoration: const InputDecoration(labelText: 'Senha'),
         keyboardType: TextInputType.visiblePassword,
+        obscureText: true,
         validator: Validator.validateSenha,
         onSaved: (value) {
           debugPrint('enviando dados para api');
