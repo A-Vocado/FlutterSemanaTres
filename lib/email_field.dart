@@ -11,6 +11,8 @@ class EmailField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(32.0),
       child: TextFormField(
+        decoration: const InputDecoration(labelText: 'E-mail'),
+        keyboardType: TextInputType.emailAddress,
         validator: Validator.validateEmail,
         onSaved: (value) {
           debugPrint('enviando dados para api');
