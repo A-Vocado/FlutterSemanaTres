@@ -3,10 +3,10 @@ class Validator {
     final rfc5322 = RegExp(r'(^[a-zA-Z ]*[A-Z][a-z]* [A-Z][a-z])');
 
     if (value == null || value.isEmpty) {
-      return 'o campo não pode ser vazio';
+      return 'O campo não pode ser vazio';
     }
     if (!value.contains(rfc5322)) {
-      return 'nome inválido, digite seu nome corretamente';
+      return 'Nome inválido, digite seu nome corretamente';
     }
   }
 
@@ -17,39 +17,39 @@ class Validator {
         r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])+");
 
     if (value == null || value.isEmpty) {
-      return 'o campo não pode ser vazio';
+      return 'O campo não pode ser vazio';
     }
 
     if (value.contains(' ')) {
-      return 'o campo não pode conter espaços';
+      return 'O campo não pode conter espaços';
     }
     if (!value.contains(rfc5322)) {
-      return 'email inválido, digite um email corretamente';
+      return 'Email inválido, digite um email corretamente';
     }
     return null;
   }
 
   static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
-      return 'o campo não pode ser vazio';
+      return 'O campo não pode ser vazio';
     }
     String pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[!@#\$&*~_]).{8,}$';
-    RegExp regExp = new RegExp(pattern);
+    RegExp regExp = RegExp(pattern);
     if (!regExp.hasMatch(value)) {
-      return 'a senha não é considerada uma senha forte';
+      return 'A senha não é considerada uma senha forte';
     }
   }
 
   static String? validateCheckbox(bool? value) {
     if (value != null && !value) {
-      return 'aceite o contrato, por favor';
+      return 'Aceite o contrato, por favor';
     }
     return null;
   }
 
   static String? validateStatesDropdown(String? value) {
     if (value == null || value.isEmpty) {
-      return "selecione um estado";
+      return "Selecione um estado";
     }
     return null;
   }

@@ -1,5 +1,6 @@
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:formy/validator.dart';
 import 'input_field.dart';
 
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
   final formMasterKey = GlobalKey<FormState>();
   bool isCheckedBox = false;
   bool isObscure = true;
-  String selectedGenre = '';
+  String selectedGenre = 'Masculino';
   String password = '';
 
   @override
@@ -83,7 +84,8 @@ class _HomeState extends State<Home> {
 
                     //Password
                     Padding(
-                      padding: const EdgeInsets.all(32.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
                       child: TextFormField(
                         onChanged: (passwordUser) {
                           password = passwordUser;
@@ -94,6 +96,10 @@ class _HomeState extends State<Home> {
                         keyboardType: TextInputType.visiblePassword,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           labelText: 'Senha',
                           hintText: 'Digite sua senha',
                           suffixIcon: GestureDetector(
@@ -111,14 +117,15 @@ class _HomeState extends State<Home> {
 
                     //Confirm Password
                     Padding(
-                      padding: const EdgeInsets.all(32.0),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 24, vertical: 12),
                       child: TextFormField(
                         onChanged: (passwordUser) {
                           password = passwordUser;
                         },
                         validator: ((value) {
                           if (value == null || value.isEmpty) {
-                            return 'o campo não pode ser vazio';
+                            return 'O campo não pode ser vazio';
                           }
                           if (value != password) {
                             'As senhas não conferem';
@@ -130,6 +137,10 @@ class _HomeState extends State<Home> {
                         keyboardType: TextInputType.visiblePassword,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
+                          isDense: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
                           labelText: 'Confirmar Senha',
                           hintText: 'Digite sua senha',
                           suffixIcon: GestureDetector(
@@ -151,7 +162,10 @@ class _HomeState extends State<Home> {
                       hintTxt: '000.000.000-00',
                       validate: Validator.validateCPF,
                       keyboardType: TextInputType.number,
-                      maskFormatter: [CpfInputFormatter()],
+                      maskFormatter: [
+                        FilteringTextInputFormatter.digitsOnly,
+                        CpfInputFormatter()
+                      ],
                       icon: const Icon(Icons.badge),
                     ),
 
@@ -161,69 +175,101 @@ class _HomeState extends State<Home> {
                         hintTxt: 'dd/mmm/aaaa',
                         validate: Validator.validateBirth,
                         keyboardType: TextInputType.number,
-                        maskFormatter: [DataInputFormatter()],
+                        maskFormatter: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          DataInputFormatter()
+                        ],
                         icon: const Icon(Icons.cake)),
-                    const Text('Identidade de Genêro'),
-                    RadioListTile(
-                      title: const Text('Masculino'),
-                      activeColor: Colors.red,
-                      value: 'Masculino',
-                      groupValue: selectedGenre,
-                      onChanged: (String? valor) {
-                        setState(
-                          () {
-                            selectedGenre = valor!;
-                          },
-                        );
-                      },
-                    ),
 
                     //Gender
-                    RadioListTile(
-                      title: const Text('Feminino'),
-                      activeColor: Colors.red,
-                      value: 'Feminino',
-                      groupValue: selectedGenre,
-                      onChanged: (String? valor) {
-                        setState(
-                          () {
-                            selectedGenre = valor!;
+                    Column(
+                      children: [
+                        Container(
+                          alignment: Alignment.topLeft,
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 32, vertical: 20),
+                          child: const Text(
+                            'Identidade de Gênero',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ),
+                        RadioListTile(
+                          title: const Text(
+                            'Masculino',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          activeColor: Colors.blue[900],
+                          value: 'Masculino',
+                          groupValue: selectedGenre,
+                          onChanged: (String? valor) {
+                            setState(
+                              () {
+                                selectedGenre = valor!;
+                              },
+                            );
                           },
-                        );
-                      },
-                    ),
-                    RadioListTile(
-                      title: const Text('Outro'),
-                      activeColor: Colors.red,
-                      value: 'Outro',
-                      groupValue: selectedGenre,
-                      onChanged: (String? valor) {
-                        setState(() {
-                          selectedGenre = valor!;
-                        });
-                      },
+                        ),
+                        SizedBox(
+                          child: RadioListTile(
+                            title: const Text(
+                              'Feminino',
+                              style: TextStyle(fontSize: 15),
+                            ),
+                            activeColor: Colors.blue[900],
+                            value: 'Feminino',
+                            groupValue: selectedGenre,
+                            onChanged: (String? valor) {
+                              setState(
+                                () {
+                                  selectedGenre = valor!;
+                                },
+                              );
+                            },
+                          ),
+                        ),
+                        RadioListTile(
+                          title: const Text('Outro',
+                              style: TextStyle(fontSize: 15)),
+                          activeColor: Colors.blue[900],
+                          value: 'Outro',
+                          groupValue: selectedGenre,
+                          onChanged: (String? valor) {
+                            setState(() {
+                              selectedGenre = valor!;
+                            });
+                          },
+                        ),
+                      ],
                     ),
 
                     //Class
-                    Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: DropdownButtonFormField<String>(
-                        decoration: const InputDecoration(labelText: 'Turma'),
-                        validator: Validator.validateStatesDropdown,
-                        items: ['Flutter', 'NodeJS', 'QA']
-                            .map<DropdownMenuItem<String>>(
-                          (String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
+                    Center(
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                        child: DropdownButtonFormField<String>(
+                          decoration: const InputDecoration(
+                            labelText: 'Turma',
+                          ),
+                          validator: Validator.validateStatesDropdown,
+                          items: ['Flutter', 'NodeJS', 'QA']
+                              .map<DropdownMenuItem<String>>(
+                            (String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            },
+                          ).toList(),
+                          onChanged: (value) {
+                            debugPrint(value);
                           },
-                        ).toList(),
-                        onChanged: (value) {
-                          debugPrint(value);
-                        },
+                        ),
                       ),
                     ),
+
                     FormField<bool>(
                       initialValue: isCheckedBox,
                       validator: Validator.validateCheckbox,
@@ -235,11 +281,11 @@ class _HomeState extends State<Home> {
                               child: Transform.scale(
                                 scale: 1,
                                 child: CheckboxListTile(
+                                  value: isCheckedBox,
                                   title: const Text(
                                     'Eu li e aceito os termos do contrato',
                                     style: TextStyle(fontSize: 12),
                                   ),
-                                  value: isCheckedBox,
                                   onChanged: (value) {
                                     setState(
                                       () {
