@@ -1,3 +1,4 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 //  //import 'package:formy/email_field.dart';
 import 'package:formy/validator.dart';
@@ -117,12 +118,17 @@ class _HomeState extends State<Home> {
                       labelTxt: 'CPF',
                       hintTxt: '000.000.000-00',
                       validate: Validator.validateCPF,
+                      keyboardNumbers: TextInputType.number,
+                      maskFormatter: [CpfInputFormatter()],
+                      icon: const Icon(Icons.badge),
                     ),
                     InputField(
-                      labelTxt: 'Data de Nascimento',
-                      hintTxt: 'dd/mmm/aaaa',
-                      validate: Validator.validateBirth,
-                    ),
+                        labelTxt: 'Data de Nascimento',
+                        hintTxt: 'dd/mmm/aaaa',
+                        validate: Validator.validateBirth,
+                        keyboardNumbers: TextInputType.number,
+                        maskFormatter: [DataInputFormatter()],
+                        icon: const Icon(Icons.cake)),
                     const Text('Identidade de Genêro'),
                     RadioListTile(
                       title: const Text('Masculino'),
