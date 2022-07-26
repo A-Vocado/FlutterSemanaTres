@@ -39,7 +39,7 @@ class Validator {
   }
 
   static String? validateNome(String? value) {
-    final rfc5322 = RegExp(r'(^[a-zA-Z ]*[A-Z][a-z]* [A-Z][a-z])');
+    final rfc5322 = RegExp(r'(^[A-Z][a-z]* [A-Z][a-z])');
 
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
@@ -52,12 +52,18 @@ class Validator {
   }
 
   static String? validateSenha(String? value) {
+    final rfc5322 = RegExp(r'/^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,20}$/');
+
     if (value == null || value.isEmpty) {
       return 'o campo não pode ser vazio';
     }
 
     if (value.length < 8) {
       return 'A senha precisa ter 8 caracteres';
+    }
+
+    if (!value.contains(rfc5322)) {
+      return 'Informe uma senha valida';
     }
 
     return null;
@@ -68,9 +74,9 @@ class Validator {
       return 'o campo não pode ser vazio';
     }
 
-    if (ConfirmacaoField != SenhaField) {
-      return 'Senhas não conferem';
-    }
+    //if (value != value2) {
+    //  return 'Senhas não conferem';
+    //}
 
     return null;
   }
