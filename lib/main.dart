@@ -51,6 +51,23 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    const InputField(
+                          keyboardType: TextInputType.name,
+                          textInputAction: TextInputAction.next,
+                          textCapitalization: TextCapitalization.words,
+                          labelTxt: 'Nome completo',
+                          hintTxt: 'Digite seu nome',
+                          icon: Icon(Icons.person),
+                          validate: Validator.validateName),
+                      // const EmailField(),
+                      const InputField(
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        labelTxt: 'Email',
+                        hintTxt: 'Digite seu email',
+                        validate: Validator.validateEmail,
+                        icon: Icon(Icons.mail),
+                      ),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
