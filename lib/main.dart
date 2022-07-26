@@ -52,6 +52,14 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 25, 5, 25),
+                      child: Text(
+                        'Criar Conta',
+                        style: TextStyle(
+                            fontSize: 25, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: TextFormField(
                           onChanged: (passwordUser) {
@@ -179,10 +187,14 @@ class _HomeState extends State<Home> {
                         return Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.all(15.0),
+                              padding: const EdgeInsets.fromLTRB(50, 5, 5, 5),
                               child: Transform.scale(
-                                scale: 1.3,
-                                child: Checkbox(
+                                scale: 1,
+                                child: CheckboxListTile(
+                                  title: Text(
+                                    'Eu li e aceito os termos do contrato',
+                                    style: TextStyle(fontSize: 12),
+                                  ),
                                   value: isCheckedBox,
                                   onChanged: (value) {
                                     setState(
@@ -209,16 +221,19 @@ class _HomeState extends State<Home> {
                         );
                       },
                     ),
-                    ElevatedButton(
-                      onPressed: _registerButton,
-                      style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue[900]),
-                          padding: MaterialStateProperty.all(
-                              const EdgeInsets.all(15)),
-                          textStyle: MaterialStateProperty.all(
-                              const TextStyle(fontSize: 20))),
-                      child: const Text("Criar Conta"),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 20),
+                      child: ElevatedButton(
+                        onPressed: _registerButton,
+                        style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all(Colors.blue[900]),
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(15)),
+                            textStyle: MaterialStateProperty.all(
+                                const TextStyle(fontSize: 20))),
+                        child: const Text("Criar Conta"),
+                      ),
                     ),
                   ],
                 ),
