@@ -1,3 +1,5 @@
+import 'package:formy/senha_field.dart';
+
 class Validator {
   //TODO: criar método para validar nome 
   //TODO: criar método para validar senha
@@ -57,6 +59,19 @@ class Validator {
     }
 
     
+    return null;
+  }
+
+  static String? validateConfirmacao(String? value) {
+    
+    if (value == null || value.isEmpty) {
+      return 'o campo não pode ser vazio';
+    }
+
+    if (value != SenhaField) {
+      return 'Senhas não conferem';
+    }
+
     return null;
   }
 
