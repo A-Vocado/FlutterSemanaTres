@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formy/confirmacao_field.dart';
 import 'package:formy/email_field.dart';
 import 'package:formy/nome_field.dart';
 import 'package:formy/senha_field.dart';
@@ -49,6 +50,7 @@ class _HomeState extends State<Home> {
                     const NomeField(),
                     const SenhaField(),
                     const EmailField(),
+                    const ConfirmacaoField(),
                     Padding(
                       padding: const EdgeInsets.all(32.0),
                       child: DropdownButtonFormField<String>(
